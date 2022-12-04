@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.hosp.pojo.entity.CrfEventMapper">
+    
+    <resultMap id="CrfEventResult" type="com.chinacreator.hosp.pojo.entity.CrfEvent">
+        <id property="eventId"    column="event_id"    />
+        <result property="eventName"    column="event_name"    />
+        <result property="eventType"    column="event_type"    />
+        <result property="eventDesc"    column="event_desc"    />
+        <result property="eventStatus"    column="event_status"    />
+        <result property="windowPeriod"    column="window_period"    />
+        <result property="windowPeriodUnit"    column="window_period_unit"    />
+        <result property="joinDuration"    column="join_duration"    />
+        <result property="joinDurationUnit"    column="join_duration_unit"    />
+        <result property="groupId"    column="group_id"    />
+        <result property="groupName"    column="group_name"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="projectName"    column="project_name"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createUserId"    column="create_user_id"    />
+        <result property="createUserName"    column="create_user_name"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateUserId"    column="update_user_id"    />
+        <result property="updateUserName"    column="update_user_name"    />
+        <result property="sort"    column="sort"    />
+        <result property="deleted"    column="deleted"    />
+    </resultMap>
+
+    <sql id="column_sql">
+        crf_event.event_id,
+        crf_event.event_name,
+        crf_event.event_type,
+        crf_event.event_desc,
+        crf_event.event_status,
+        crf_event.window_period,
+        crf_event.window_period_unit,
+        crf_event.join_duration,
+        crf_event.join_duration_unit,
+        crf_event.group_id,
+        crf_event.group_name,
+        crf_event.project_id,
+        crf_event.project_name,
+        crf_event.create_time,
+        crf_event.create_user_id,
+        crf_event.create_user_name,
+        crf_event.update_time,
+        crf_event.update_user_id,
+        crf_event.update_user_name,
+        crf_event.sort,
+        crf_event.deleted
+    </sql>
+
+    <sql id="whereClause_sql">
+        <if test="eventName != null  and eventName != ''"> and event_name like concat('%', #{eventName}, '%')</if>
+        <if test="eventType != null ">and event_type = #{eventType}</if>
+        <if test="eventDesc != null  and eventDesc != ''">and event_desc = #{eventDesc}</if>
+        <if test="eventStatus != null ">and event_status = #{eventStatus}</if>
+        <if test="windowPeriod != null ">and window_period = #{windowPeriod}</if>
+        <if test="windowPeriodUnit != null  and windowPeriodUnit != ''">and window_period_unit = #{windowPeriodUnit}</if>
+        <if test="joinDuration != null ">and join_duration = #{joinDuration}</if>
+        <if test="joinDurationUnit != null  and joinDurationUnit != ''">and join_duration_unit = #{joinDurationUnit}</if>
+        <if test="groupId != null  and groupId != ''">and group_id = #{groupId}</if>
+        <if test="groupName != null  and groupName != ''"> and group_name like concat('%', #{groupName}, '%')</if>
+        <if test="projectId != null  and projectId != ''">and project_id = #{projectId}</if>
+        <if test="projectName != null  and projectName != ''"> and project_name like concat('%', #{projectName}, '%')</if>
+        <if test="createTime != null ">and create_time = #{createTime}</if>
+        <if test="createUserId != null  and createUserId != ''">and create_user_id = #{createUserId}</if>
+        <if test="createUserName != null  and createUserName != ''"> and create_user_name like concat('%', #{createUserName}, '%')</if>
+        <if test="updateTime != null ">and update_time = #{updateTime}</if>
+        <if test="updateUserId != null  and updateUserId != ''">and update_user_id = #{updateUserId}</if>
+        <if test="updateUserName != null  and updateUserName != ''"> and update_user_name like concat('%', #{updateUserName}, '%')</if>
+        <if test="sort != null ">and sort = #{sort}</if>
+        <if test="deleted != null ">and deleted = #{deleted}</if>
+    </sql>
+
+    <select id="select" parameterType="com.chinacreator.hosp.pojo.entity.CrfEvent" resultMap="CrfEventResult">
+        select
+        <include refid="column_sql"/>
+        from crf_event
+        <where>
+            <include refid="whereClause_sql"/>
+        </where>
+    </select>
+
+    <select id="selectByID" parameterType="String" resultMap="CrfEventResult">
+        select
+        <include refid="column_sql"/>
+        from crf_event
+        where crf_event.event_id = #{eventId}
+    </select>
+
+    <select id="selectByPage" parameterType="com.chinacreator.hosp.pojo.entity.CrfEvent" resultMap="CrfEventResult">
+        select
+        <include refid="column_sql"/>
+        from crf_event
+        <where>
+            <include refid="whereClause_sql"/>
+        </where>
+    </select>
+
+    <select id="selectAll" resultMap="CrfEventResult">
+        select
+        <include refid="column_sql"/>
+        from crf_event
+    </select>
+
+    <insert id="insert" parameterType="com.chinacreator.hosp.pojo.entity.CrfEvent" useGeneratedKeys="true" keyProperty="eventId">
+        insert into crf_event(
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="eventId != null">event_id,</if>
+                <if test="eventName != null">event_name,</if>
+                <if test="eventType != null">event_type,</if>
+                <if test="eventDesc != null">event_desc,</if>
+                <if test="eventStatus != null">event_status,</if>
+                <if test="windowPeriod != null">window_period,</if>
+                <if test="windowPeriodUnit != null">window_period_unit,</if>
+                <if test="joinDuration != null">join_duration,</if>
+                <if test="joinDurationUnit != null">join_duration_unit,</if>
+                <if test="groupId != null">group_id,</if>
+                <if test="groupName != null">group_name,</if>
+                <if test="projectId != null">project_id,</if>
+                <if test="projectName != null">project_name,</if>
+                <if test="createTime != null">create_time,</if>
+                <if test="createUserId != null">create_user_id,</if>
+                <if test="createUserName != null">create_user_name,</if>
+                <if test="updateTime != null">update_time,</if>
+                <if test="updateUserId != null">update_user_id,</if>
+                <if test="updateUserName != null">update_user_name,</if>
+                <if test="sort != null">sort,</if>
+                <if test="deleted != null">deleted,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="eventId != null">#{eventId},</if>
+                <if test="eventName != null">#{eventName},</if>
+                <if test="eventType != null">#{eventType},</if>
+                <if test="eventDesc != null">#{eventDesc},</if>
+                <if test="eventStatus != null">#{eventStatus},</if>
+                <if test="windowPeriod != null">#{windowPeriod},</if>
+                <if test="windowPeriodUnit != null">#{windowPeriodUnit},</if>
+                <if test="joinDuration != null">#{joinDuration},</if>
+                <if test="joinDurationUnit != null">#{joinDurationUnit},</if>
+                <if test="groupId != null">#{groupId},</if>
+                <if test="groupName != null">#{groupName},</if>
+                <if test="projectId != null">#{projectId},</if>
+                <if test="projectName != null">#{projectName},</if>
+                <if test="createTime != null">#{createTime},</if>
+                <if test="createUserId != null">#{createUserId},</if>
+                <if test="createUserName != null">#{createUserName},</if>
+                <if test="updateTime != null">#{updateTime},</if>
+                <if test="updateUserId != null">#{updateUserId},</if>
+                <if test="updateUserName != null">#{updateUserName},</if>
+                <if test="sort != null">#{sort},</if>
+                <if test="deleted != null">#{deleted},</if>
+        </trim>
+    </insert>
+
+    <insert id="insertBatch" parameterType="list">
+        insert into crf_event
+        (event_id,event_name,event_type,event_desc,event_status,window_period,window_period_unit,join_duration,join_duration_unit,group_id,group_name,project_id,project_name,create_time,create_user_id,create_user_name,update_time,update_user_id,update_user_name,sort,deleted)
+        <foreach collection="list" item="entity" index="index" separator="union all">
+            select
+            #{entity.eventId},
+            #{entity.eventName},
+            #{entity.eventType},
+            #{entity.eventDesc},
+            #{entity.eventStatus},
+            #{entity.windowPeriod},
+            #{entity.windowPeriodUnit},
+            #{entity.joinDuration},
+            #{entity.joinDurationUnit},
+            #{entity.groupId},
+            #{entity.groupName},
+            #{entity.projectId},
+            #{entity.projectName},
+            #{entity.createTime},
+            #{entity.createUserId},
+            #{entity.createUserName},
+            #{entity.updateTime},
+            #{entity.updateUserId},
+            #{entity.updateUserName},
+            #{entity.sort},
+            #{entity.deleted}
+            from dual
+        </foreach>
+    </insert>
+
+    <select id="count" parameterType="com.chinacreator.hosp.pojo.entity.CrfEvent" resultType="int">
+        select count(*) from crf_event
+        <where>
+            <include refid="whereClause_sql"/>
+        </where>
+    </select>
+
+    <update id="update" parameterType="com.chinacreator.hosp.pojo.entity.CrfEvent">
+        update crf_event
+        <trim prefix="SET" suffixOverrides=",">
+                    <if test="eventName != null">event_name = #{eventName},</if>
+                    <if test="eventType != null">event_type = #{eventType},</if>
+                    <if test="eventDesc != null">event_desc = #{eventDesc},</if>
+                    <if test="eventStatus != null">event_status = #{eventStatus},</if>
+                    <if test="windowPeriod != null">window_period = #{windowPeriod},</if>
+                    <if test="windowPeriodUnit != null">window_period_unit = #{windowPeriodUnit},</if>
+                    <if test="joinDuration != null">join_duration = #{joinDuration},</if>
+                    <if test="joinDurationUnit != null">join_duration_unit = #{joinDurationUnit},</if>
+                    <if test="groupId != null">group_id = #{groupId},</if>
+                    <if test="groupName != null">group_name = #{groupName},</if>
+                    <if test="projectId != null">project_id = #{projectId},</if>
+                    <if test="projectName != null">project_name = #{projectName},</if>
+                    <if test="createTime != null">create_time = #{createTime},</if>
+                    <if test="createUserId != null">create_user_id = #{createUserId},</if>
+                    <if test="createUserName != null">create_user_name = #{createUserName},</if>
+                    <if test="updateTime != null">update_time = #{updateTime},</if>
+                    <if test="updateUserId != null">update_user_id = #{updateUserId},</if>
+                    <if test="updateUserName != null">update_user_name = #{updateUserName},</if>
+                    <if test="sort != null">sort = #{sort},</if>
+                    <if test="deleted != null">deleted = #{deleted},</if>
+        </trim>
+        where event_id = #{eventId}
+    </update>
+
+    <delete id="delete" parameterType="com.chinacreator.hosp.pojo.entity.CrfEvent">
+        delete from crf_event where 1 = 1 and event_id = #{eventId}
+    </delete>
+
+    <delete id="deleteBatch" parameterType="List">
+        delete from crf_event where event_id in
+        <foreach item="entity" index="index" collection="list" open="(" close=")">
+            <if test="index&gt;999 and index%1000==0">) or id in(</if>
+            <choose>
+                <when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+                <otherwise>#{entity}</otherwise>
+            </choose>
+            <if test="index%1000!=999 and index&lt;list.size()-1">,</if>
+        </foreach>
+    </delete>
+
+    <delete id="deleteCrfEventLogic" parameterType="String">
+        update crf_event
+        set deleted = 1
+        where event_id = #{eventId}
+    </delete>
+
+    <delete id="deleteBatchCrfEventLogic" parameterType="String">
+        update crf_event set deleted = 1 where event_id in
+        <foreach collection="list" item="eventId" open="(" separator="," close=")">
+            #{eventId}
+        </foreach>
+    </delete>
+</mapper>
