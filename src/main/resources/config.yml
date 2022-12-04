@@ -2,7 +2,7 @@ jdbcUrl: jdbc:mysql://106.55.62.135:3306/ry-vue?characterEncoding=utf8&useSSL=fa
 jdbcUsername: root
 jdbcPassword: 123456
 # 待生成表（支持多表，表名前后需加上单引号）
-genTable: "'crf_event','crf_event_form_relation','crf_patient'"
+genTable: "'crf_event','crf_event_form_relation'
 # 代码包名
 genPackage: com.chinacreator.hosp
 # 代码作者
