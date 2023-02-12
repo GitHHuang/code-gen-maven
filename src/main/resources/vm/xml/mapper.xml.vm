@@ -123,7 +123,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <delete id="deleteBatch" parameterType="List">
         delete from ${tableName} where ${pkColumn.columnName.toLowerCase()} in
         <foreach item="entity" index="index" collection="list" open="(" close=")">
-            <if test="index&gt;999 and index%1000==0">) or id in(</if>
+            <if test="index&gt;999 and index%1000==0">) or ${pkColumn.columnName.toLowerCase()} in(</if>
             <choose>
                 <when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
                 <otherwise>#{entity}</otherwise>
