@@ -133,8 +133,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <delete id="delete${ClassName}Logic" parameterType="String">
-        update ${tableName}
-        set deleted = 1
+        update ${tableName} set deleted = 1
         where ${pkColumn.columnName.toLowerCase()} = #{${pkColumn.javaField}}
     </delete>
 
