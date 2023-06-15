@@ -68,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <insert id="insert" parameterType="${packageName}.pojo.entity.${ClassName}" useGeneratedKeys="true" keyProperty="$pkColumn.javaField">
-        insert into ${tableName}(
+        insert into ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides=",">
             #foreach($column in $columns)
             #if($column.columnName != $pkColumn.columnName || !$pkColumn.increment)
@@ -125,7 +125,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <foreach item="entity" index="index" collection="list" open="(" close=")">
             <if test="index&gt;999 and index%1000==0">) or ${pkColumn.columnName.toLowerCase()} in(</if>
             <choose>
-                <when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+                <when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.${pkColumn.columnName.toLowerCase()}}</when>
                 <otherwise>#{entity}</otherwise>
             </choose>
             <if test="index%1000!=999 and index&lt;list.size()-1">,</if>
