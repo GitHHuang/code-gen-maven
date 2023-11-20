@@ -1,15 +1,20 @@
 package ${packageName}.service.impl;
 
-import java.util.List;
-import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import ${packageName}.common.PageDataInfo;
+import ${packageName}.common.PageQuery;
+import ${packageName}.constant.Business;
+import ${packageName}.mapper.${ClassName}Mapper;
 import ${packageName}.pojo.entity.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
-import com.chinacreator.c2.dao.DaoFactory;
-import com.chinacreator.c2.dao.mybatis.enhance.Page;
-import com.chinacreator.c2.dao.mybatis.enhance.Pageable;
-import com.chinacreator.c2.dao.mybatis.enhance.Sortable;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * ${functionName}Service业务层处理
@@ -18,106 +23,15 @@ import org.slf4j.LoggerFactory;
  * @date ${datetime}
  */
 @Service
-public class ${ClassName}ServiceImpl implements I${ClassName}Service 
-{
+public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${ClassName}> implements I${ClassName}Service {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
-     * 根据${pkColumn.columnComment}查询${functionName}
-     * 
-     * @param ${pkColumn.javaField}
-     * @return
+     * 分页查询${functionName}
      */
     @Override
-    public ${ClassName} select${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField}) {
-        return DaoFactory.create(${ClassName}.class).selectByID(${pkColumn.javaField});
-    }
-
-    /**
-     * 查询${functionName}集合
-     * 
-     * @param ${className}
-     * @return
-     */
-    @Override
-    public List<${ClassName}> select${ClassName}List(${ClassName} ${className}) {
-        return DaoFactory.create(${ClassName}.class).select(${className});
-    }
-
-    /**
-     * 分页查询${functionName}集合
-     *
-     * @param ${className}
-     * @return
-     */
-    @Override
-    public Page<${ClassName}> select${ClassName}Page(${ClassName} ${className}) {
-        return DaoFactory.create(${ClassName}.class).selectByPage(${className}, new Pageable(1, 10), new Sortable(), true);
-    }
-
-    /**
-     * 新增${functionName}
-     * 
-     * @param ${className}
-     * @return
-     */
-    @Override
-    public int insert${ClassName}(${ClassName} ${className}) {
-        return DaoFactory.create(${ClassName}.class).insert(${className});
-    }
-
-    /**
-     * 批量新增${functionName}
-     *
-     * @param ${className}List
-     * @return
-     */
-    @Override
-    public int insertBatch${ClassName}(List<${ClassName}> ${className}List) {
-        return DaoFactory.create(${ClassName}.class).insertBatch(${className}List);
-    }
-
-    /**
-     * 更新${functionName}
-     * 
-     * @param ${className}
-     * @return
-     */
-    @Override
-    public int update${ClassName}(${ClassName} ${className}) {
-        return DaoFactory.create(${ClassName}.class).update(${className});
-    }
-
-    /**
-     * 批量更新${functionName}
-     *
-     * @param ${className}List
-     * @return
-     */
-    @Override
-    public int updateBatch${ClassName}(List<${ClassName}> ${className}List) {
-        return DaoFactory.create(${ClassName}.class).updateBatch(${className}List);
-    }
-
-    /**
-     * 删除${functionName}
-     *
-     * @param ${pkColumn.javaField}
-     * @return
-     */
-    @Override
-    public int delete${ClassName}(${pkColumn.javaType} ${pkColumn.javaField}) {
-        return DaoFactory.create(${ClassName}.class).delete(${pkColumn.javaField});
-    }
-
-    /**
-     * 批量删除${functionName}
-     * 
-     * @param ${pkColumn.javaField}s
-     * @return
-     */
-    @Override
-    public int deleteBatch${ClassName}(List<${pkColumn.javaType}> ${pkColumn.javaField}s) {
-        return DaoFactory.create(${ClassName}.class).deleteBatch(${pkColumn.javaField}s);
+    public PageDataInfo<${ClassName}> page${ClassName}(PageQuery pageParam) {
+        Page<${ClassName}> recordPage = lambdaQuery().page(pageParam.build());
+        return PageDataInfo.build(recordPage);
     }
 }

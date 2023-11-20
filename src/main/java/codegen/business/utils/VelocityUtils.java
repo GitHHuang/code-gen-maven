@@ -19,8 +19,8 @@ public class VelocityUtils
     private static final String PROJECT_PATH = "main/java";
 
     /** mybatis空间路径 */
-    private static final String MYBATIS_PATH = "main/resources/sqlmap";
-    // private static final String MYBATIS_PATH = "main/resources/mapper";
+    // private static final String MYBATIS_PATH = "main/resources/sqlmap";
+    private static final String MYBATIS_PATH = "main/resources/mapper";
 
     /** 默认上级菜单，系统工具 */
     private static final String DEFAULT_PARENT_MENU_ID = "3";
@@ -147,7 +147,7 @@ public class VelocityUtils
     {
         List<String> templates = new ArrayList<String>();
         templates.add("vm/java/domain.java.vm");
-        // templates.add("vm/java/mapper.java.vm");
+        templates.add("vm/java/mapper.java.vm");
         templates.add("vm/java/service.java.vm");
         templates.add("vm/java/serviceImpl.java.vm");
         templates.add("vm/java/controller.java.vm");
@@ -181,7 +181,7 @@ public class VelocityUtils
         String businessName = genTable.getBusinessName();
 
         String javaPath = PROJECT_PATH + "/" + StringUtils.replace(packageName, ".", "/");
-        String mybatisPath = MYBATIS_PATH + "/" + moduleName;
+        String mybatisPath = MYBATIS_PATH;
         String vuePath = "vue";
 
         if (template.contains("domain.java.vm"))
@@ -208,8 +208,8 @@ public class VelocityUtils
         }
         else if (template.contains("mapper.xml.vm"))
         {
-            fileName = StringUtils.format("{}/pojo/entity/{}Mapper.xml", MYBATIS_PATH + "/" + StringUtils.replace(packageName, ".", "/"), className);
-            // fileName = StringUtils.format("{}/{}Mapper.xml", mybatisPath, className);
+            // fileName = StringUtils.format("{}/pojo/entity/{}Mapper.xml", MYBATIS_PATH + "/" + StringUtils.replace(packageName, ".", "/"), className);
+            fileName = StringUtils.format("{}/{}Mapper.xml", mybatisPath, className);
         }
         else if (template.contains("api.js.vm"))
         {

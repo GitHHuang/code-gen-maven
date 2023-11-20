@@ -1,8 +1,8 @@
-jdbcUrl: jdbc:mysql://106.55.62.135:3306/ry-vue?characterEncoding=utf8&useSSL=false
+jdbcUrl: jdbc:mysql://172.31.1.202:13306/hosp_datacenter_portal?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
 jdbcUsername: root
-jdbcPassword: 123456
+jdbcPassword: key@123456
 # 待生成表（支持多表，表名前后需加上单引号）
-genTable: "'crf_event','crf_event_form_relation'
+genTable: "'cms_service_info','cms_service_info_backup','cms_service_quota_backup','cms_service_scene_backup'"
 # 代码包名
 genPackage: com.chinacreator.hosp
 # 代码作者

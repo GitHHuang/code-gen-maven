@@ -1,8 +1,10 @@
 package ${packageName}.service;
 
-import java.util.List;
-import com.chinacreator.c2.dao.mybatis.enhance.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
+import ${packageName}.common.PageDataInfo;
+import ${packageName}.common.PageQuery;
 import ${packageName}.pojo.entity.${ClassName};
+import java.util.List;
 
 /**
  * ${functionName}Service接口
@@ -10,77 +12,10 @@ import ${packageName}.pojo.entity.${ClassName};
  * @author ${author}
  * @date ${datetime}
  */
-public interface I${ClassName}Service 
+public interface I${ClassName}Service extends IService<${ClassName}>
 {
     /**
-     * 根据${pkColumn.columnComment}查询${functionName}
-     * 
-     * @param ${pkColumn.javaField}
-     * @return
+     * 分页查询${functionName}
      */
-    public ${ClassName} select${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField});
-
-    /**
-     * 查询${functionName}集合
-     * 
-     * @param ${className}
-     * @return
-     */
-    public List<${ClassName}> select${ClassName}List(${ClassName} ${className});
-
-    /**
-     * 分页查询${functionName}集合
-     *
-     * @param ${className}
-     * @return
-     */
-    public Page<${ClassName}> select${ClassName}Page(${ClassName} ${className});
-
-    /**
-     * 新增${functionName}
-     * 
-     * @param ${className}
-     * @return
-     */
-    public int insert${ClassName}(${ClassName} ${className});
-
-    /**
-     * 批量新增${functionName}
-     *
-     * @param ${className}List
-     * @return
-     */
-    public int insertBatch${ClassName}(List<${ClassName}> ${className}List);
-
-    /**
-     * 更新${functionName}
-     * 
-     * @param ${className}
-     * @return
-     */
-    public int update${ClassName}(${ClassName} ${className});
-
-    /**
-     * 批量更新${functionName}
-     *
-     * @param ${className}List
-     * @return
-     */
-    public int updateBatch${ClassName}(List<${ClassName}> ${className}List);
-
-    /**
-     * 删除${functionName}
-     *
-     * @param ${pkColumn.javaField}
-     * @return
-     */
-    public int delete${ClassName}(${pkColumn.javaType} ${pkColumn.javaField});
-
-    /**
-     * 批量删除${functionName}
-     * 
-     * @param ${pkColumn.javaField}s
-     * @return
-     */
-    public int deleteBatch${ClassName}(List<${pkColumn.javaType}> ${pkColumn.javaField}s);
+    PageDataInfo<${ClassName}> page${ClassName}(PageQuery pageParam);
 }

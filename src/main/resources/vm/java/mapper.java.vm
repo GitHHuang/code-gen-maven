@@ -1,7 +1,13 @@
 package ${packageName}.mapper;
 
-import java.util.List;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
 import ${packageName}.pojo.entity.${ClassName};
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
 /**
  * ${functionName}Mapper接口
@@ -9,53 +15,15 @@ import ${packageName}.pojo.entity.${ClassName};
  * @author ${author}
  * @date ${datetime}
  */
-public interface ${ClassName}Mapper 
-{
-    /**
-     * 查询${functionName}
-     * 
-     * @param ${pkColumn.javaField} ${functionName}主键
-     * @return ${functionName}
-     */
-    public ${ClassName} select${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField});
+public interface ${ClassName}Mapper extends BaseMapper<${ClassName}> {
 
     /**
-     * 查询${functionName}列表
-     * 
-     * @param ${className} ${functionName}
-     * @return ${functionName}集合
+     * 分页查询指定行数据
+     *
+     * @param page 分页参数
+     * @param wrapper 动态查询条件
+     * @return 分页对象列表
      */
-    public List<${ClassName}> select${ClassName}List(${ClassName} ${className});
+    IPage<${ClassName}> selectByPage(IPage<${ClassName}> page , @Param(Constants.WRAPPER) Wrapper<${ClassName}> wrapper);
 
-    /**
-     * 新增${functionName}
-     * 
-     * @param ${className} ${functionName}
-     * @return 结果
-     */
-    public int insert${ClassName}(${ClassName} ${className});
-
-    /**
-     * 修改${functionName}
-     * 
-     * @param ${className} ${functionName}
-     * @return 结果
-     */
-    public int update${ClassName}(${ClassName} ${className});
-
-    /**
-     * 删除${functionName}
-     * 
-     * @param ${pkColumn.javaField} ${functionName}主键
-     * @return 结果
-     */
-    public int delete${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaType} ${pkColumn.javaField});
-
-    /**
-     * 批量删除${functionName}
-     * 
-     * @param ${pkColumn.javaField}s 需要删除的数据主键集合
-     * @return 结果
-     */
-    public int delete${ClassName}By${pkColumn.capJavaField}s(${pkColumn.javaType}[] ${pkColumn.javaField}s);
 }
