@@ -116,7 +116,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where ${pkColumn.columnName.toLowerCase()} = #{${pkColumn.javaField}}
     </update>
 
-    <delete id="delete" parameterType="com.chinacreator.hosp.pojo.entity.CrfEvent">
+    <delete id="delete" parameterType="com.chinacreator.hosp.pojo.entity.${ClassName}">
         delete from ${tableName} where 1 = 1 and ${pkColumn.columnName.toLowerCase()} = #{${pkColumn.javaField}}
     </delete>
 
